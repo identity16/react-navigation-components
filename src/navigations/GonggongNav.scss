@@ -1,0 +1,162 @@
+@import '../global';
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 99;
+}
+
+.GonggongNav {
+  $nav-height: 70px;
+  $border-color: rgba(0,0,0,.15);
+  z-index: 100;
+  position: relative;
+  min-height: $nav-height;
+  background-color: white;
+  box-shadow: 0 0 0 1px $border-color;
+  padding: 0 20px;
+
+  .GonggongNav__logo {
+    $logo-height: 40px;
+    display: block;
+    float: left;
+    height: $logo-height;
+    position: relative;
+    padding: #{($nav-height - $logo-height) / 2} 0;
+    img {
+      height: $logo-height;
+    }
+  }
+
+  .GonggongNav__menu-container, .GonggongNav__submenu-container {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .GonggongNav__menu-container {
+    .GonggongNav__menu-item {
+      $menu-item-width: 100px;
+      display: block;
+      width: $menu-item-width;
+      min-height: $nav-height;
+      line-height: $nav-height;
+      padding: 0 20px;
+      position: relative;
+      text-align: center;
+      font-size: 16px;
+      font-weight: 600;
+
+      .GonggongNav__submenu-container {
+        flex-direction: column;
+        max-height: 0;
+        box-sizing: border-box;
+        overflow: hidden;
+        transition: all 1s ease-out;
+
+        .GonggongNav__submenu-item {
+          $submenu-item-height: 30px;
+          width: $menu-item-width;
+          height: $submenu-item-height;
+          line-height: $submenu-item-height;
+          font-size: 12px;
+
+          &:last-child {
+            margin-bottom: 30px;
+          }
+        }
+      }
+
+      &:hover {
+        .GonggongNav__submenu-container {
+          max-height: 300px;
+        }
+      }
+
+      a {
+        text-decoration: none;
+        color: #898d96;
+
+        &:hover {
+          color: #1e71e8;
+        }
+      }
+    }
+
+    @include sm {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background-color: white;
+      flex-direction: column;
+      justify-content: flex-start;
+      display: none;
+      padding: 0;
+      .GonggongNav__menu-item {
+        text-align: left;
+        width: 100%;
+        border-bottom: $border-color 1px solid;
+        padding: 0;
+
+        .GonggongNav__submenu-container {
+          width: 100%;
+          .GonggongNav__submenu-item {
+            width: 100%;
+            height: $nav-height;
+            line-height: $nav-height;
+            border-top: $border-color 1px solid;
+
+            &:last-child {
+              margin-bottom: 0;
+            }
+          }
+        }
+        
+        a {
+          padding: 0 20px;
+        }
+
+        &:first-child {
+          border-top: $border-color 1px solid;
+        }
+        
+      }
+      &.expand {
+        display: flex;
+      }
+    }
+  }
+
+  .GonggongNav__mobile-menu-btn {
+    display: none;
+    background-color: transparent;
+    width: 20px;
+    height: 20px;
+    border: 0;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    float: right;
+    position: relative;
+    top: #{$nav-height / 2};
+    transform: translateY(-50%);
+
+    @include sm {
+      display: block;
+    }
+  }
+
+  &::after {
+    content: '';
+    clear: both;
+    display: block;
+  }
+}

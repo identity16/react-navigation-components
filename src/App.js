@@ -6,7 +6,7 @@ import {
   Switch
 } from "react-router-dom";
 import "./styles.css";
-import GonggongNav from "./components/GonggongNav";
+import GonggongNav from "./navigations/GonggongNav";
 
 const navProps = {
   logoSrc: "/logo.png",
@@ -31,7 +31,17 @@ const navProps = {
     },
     {
       name: "Link2",
-      link: "#"
+      link: "#",
+      subMenu: [
+        {
+          name: "Link2-1",
+          link: "#"
+        },
+        {
+          name: "Link2-2",
+          link: "#"
+        }
+      ]
     },
     {
       name: "Link3",
